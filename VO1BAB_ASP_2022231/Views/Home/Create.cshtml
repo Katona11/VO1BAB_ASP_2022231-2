@@ -1,0 +1,74 @@
+﻿@using VO1BAB_ASP_2022231.Models;
+@model Cars
+@using VO1BAB_ASP_2022231.Data
+
+@inject ICarBrandRepository brand
+
+
+
+<head>
+    <link rel="stylesheet" href="~/Create.css" />
+    <title>Add a new car</title>
+</head>
+
+
+
+<h1>Add a new car</h1>
+
+
+<form method="post" action="create">
+
+
+    <select name="CarBrandID">
+        @foreach (var item in brand.ReadAll())
+        {
+            <option value="@item.CarBrandID">@item.Name</option>
+        }
+       
+    </select>
+
+   @* @Html.LabelFor(t=>t.CarBrandID)
+    @Html.EditorFor(t=>t.CarBrandID) *@ 
+
+   @* @Html.LabelFor(t=>t.Type)
+    @Html.EditorFor(t=>t.Type)
+
+    @Html.LabelFor(t=>t.LicensePlateNumber)
+    @Html.EditorFor(t=>t.LicensePlateNumber)
+
+    @Html.LabelFor(t=>t.Year)
+    @Html.EditorFor(t=>t.Year)
+    
+
+    @Html.LabelFor(t=>t.PerformanceInHP)
+    @Html.EditorFor(t=>t.PerformanceInHP)*@
+
+
+    @Html.LabelFor(t=>t.Type)
+    <input type="text" name="Type" size="50"/>
+
+    @Html.LabelFor(t=>t.LicensePlateNumber)
+    <input type="text" name="LicensePlateNumber" maxlength="12" />
+
+
+    @Html.LabelFor(t=>t.Year)
+    <input type="number" name="Year" min="1900" max="2023" />
+
+    @Html.LabelFor(t=>t.PerformanceInHP)
+    <input type="number" name="PerformanceInHP" min="10" max="1000"/>
+
+    @Html.LabelFor(t=>t.Image)
+    <input type="text" name="Image" />
+    
+
+
+
+
+
+
+
+    
+   
+    <input type="submit" value="Create" />
+  
+</form>

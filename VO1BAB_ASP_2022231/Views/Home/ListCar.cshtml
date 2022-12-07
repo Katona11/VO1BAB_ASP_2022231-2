@@ -1,0 +1,94 @@
+﻿@using VO1BAB_ASP_2022231.Models;
+@model IEnumerable<Cars>
+@using VO1BAB_ASP_2022231.Data
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+@inject ICarBrandRepository brand
+
+<head>
+    <title>All car</title>
+    <link rel="stylesheet" href="~/Table.css" />
+</head>
+<form  method="post" action="Filter">
+    <input type="number" name="number" />
+    <select name="brand">
+        @foreach (var item in brand.ReadAll())
+        {
+            <option value="@item.CarBrandID">@item.Name</option>
+        }
+        <option value="0" selected>Nincs</option>
+    </select>
+
+    
+    <input type="submit" value="Filter" />
+</form>
+
+<form id="search" action="Search" method="post">
+    <input  type="text" name="id" />
+    <input type="submit" value="Search" />
+</form>
+
+
+
+<form method="post" action="Sort">
+    <select name="name">
+        <option value="Year">Year</option>
+        <option value="Name">Name</option>
+        <option value="HP">Hp</option>
+        <option value="none" selected>None</option>
+             
+
+    </select>
+    <input type="submit" value="Sort" />
+</form>
+
+
+<form method="post" action="ListCar">
+    <input type="submit" value="Reset" />
+</form>
+
+
+
+<table>
+
+    <tr>
+        
+            <th>CarBrand</th>
+            <th>CarID</th>
+            <th>Type</th>
+            <th>LicensePlateNumber</th>
+            <th>Year</th>
+            <th>PerformanceInHP</th>
+            
+            <th>Actions</th>
+        
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.carbrand.Name</td>
+            <td>@item.CarsID</td>
+            <td>@item.Type</td>
+            <td>@item.LicensePlateNumber</td>
+            <td>@item.Year</td>
+            <td>@item.PerformanceInHP</td>
+            <td>
+                <a id="actions" href="/view/viewcar?id=@item.CarsID">Show</a>
+                @if ((SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Admin")))
+                {
+                    <a id="actions" href="/home/delete?id=@item.CarsID">Delete</a>
+                    <a id="actions" href="/home/update?id=@item.CarsID">Update</a>
+                }
+                
+                
+            </td>
+
+        </tr>
+    }
+</table>
+<a href="/home/theusernumber">This User data</a>

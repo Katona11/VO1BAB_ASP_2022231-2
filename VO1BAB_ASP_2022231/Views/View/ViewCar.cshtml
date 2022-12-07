@@ -1,0 +1,26 @@
+﻿@using VO1BAB_ASP_2022231.Data
+@using VO1BAB_ASP_2022231.Models
+@model Cars
+<head>
+    <link rel="stylesheet" href="~/Show.css" />
+</head>
+
+
+<p>Brand: @Model.carbrand.Name</p>
+<p>Type: @Model.Type</p>
+<p>Hp: @Model.PerformanceInHP</p>
+<p>License: @Model.LicensePlateNumber</p>
+<p>Year: @Model.Year</p>
+
+<div class="polaroid">
+    <img src="@Model.Image" alt="5 Terre" style="width:100%">
+    <div class="container">
+        <p>@Model.carbrand.Name @Model.Type</p>
+    </div>
+</div>
+
+<a id="link" href="/home/listcar">Return to list</a>
+
+
+
+

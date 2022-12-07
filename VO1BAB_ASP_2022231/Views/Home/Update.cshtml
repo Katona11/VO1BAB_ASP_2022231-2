@@ -1,0 +1,57 @@
+﻿
+
+
+@using VO1BAB_ASP_2022231.Models;
+@model Cars
+@using VO1BAB_ASP_2022231.Data
+
+@inject ICarBrandRepository brand
+
+
+
+<head>  <link rel="stylesheet" href="~/Create.css" />
+    <title>Update car</title>
+</head>
+
+
+
+<h1>Update car</h1>
+
+<form method="post" action="update">
+
+
+    @*<select name="CarBrandID">
+        @foreach (var item in brand.ReadAll())
+        {
+            <option value="@item.CarBrandID">@item.Name</option>
+        }
+    </select>*@
+    
+
+    @* @Html.LabelFor(t=>t.CarBrandID)
+    @Html.EditorFor(t=>t.CarBrandID) *@
+
+
+    <input type="hidden" name="CarsID" value="@Model.CarsID" />
+
+    <input type="hidden" name="CarBrandID" value="@Model.CarBrandID" />
+
+
+    @Html.LabelFor(t=>t.Type)
+    <input type="text" name="Type" value="@Model.Type"/>
+
+    @Html.LabelFor(t=>t.LicensePlateNumber)
+    <input type="text" name="LicensePlateNumber" value="@Model.LicensePlateNumber" />
+    
+
+    @Html.LabelFor(t=>t.Year)
+    <input type="number" name="Year" value="@Model.Year" />
+
+    @Html.LabelFor(t=>t.PerformanceInHP)
+    <input type="number" name="PerformanceInHP" value="@Model.PerformanceInHP" />
+
+
+
+    <input type="submit" value="Update" />
+
+</form>

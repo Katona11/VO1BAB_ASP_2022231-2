@@ -1,0 +1,22 @@
+﻿input[type=submit] {
+    width: 150px;
+    font-size: 20px;
+    cursor: pointer;
+    height: 50px;
+    background: lightgreen;
+}
+
+input[type=submit]:hover {
+        outline: 3px solid white;
+        border-width: 5px solid red;
+        background: yellow;
+    }
+input,select {
+    width: 100%;
+    padding: 12px 12px;
+    margin: 15px 4px;
+    box-sizing: border-box;
+    border: 2px groove navy;
+}
+
+

@@ -1,0 +1,21 @@
+﻿@model IEnumerable<IdentityUser>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+    <ul>
+        @foreach (var user in Model)
+        {
+            <li>
+                @user.UserName
+                @if (await UserManager.IsInRoleAsync(user, "Admin"))
+                {
+                    <a class="btn btn-danger" href="/Home/RemoveAdmin?uid=@user.UserName">Remove Admin Rights</a>
+                }
+                else
+                {
+                    <a class="btn btn-success" href="/Home/GrantAdmin?uid=@user.UserName">Grant Admin Rights</a>
+                }
+            </li>
+        }
+    </ul>
